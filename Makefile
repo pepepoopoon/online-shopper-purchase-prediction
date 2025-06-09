@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: install smoke train evaluate predict test lint check
+.PHONY: install smoke train evaluate predict experiment test lint check
 
 install:
 	$(PYTHON) -m pip install -e ".[dev]"
@@ -16,6 +16,11 @@ evaluate:
 
 predict:
 	PYTHONPATH=src $(PYTHON) -m online_shopper.predict --data data/smoke.csv
+
+experiment:
+	PYTHONPATH=src $(PYTHON) -m online_shopper.experiment \
+		--output experiments/results/baseline.json \
+		--hypothesis "Зафиксировать базовое качество на синтетической выборке"
 
 test:
 	PYTHONPATH=src $(PYTHON) -m pytest

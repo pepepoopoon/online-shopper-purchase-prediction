@@ -10,6 +10,7 @@ import pandas as pd
 
 from online_shopper.data import SchemaError, split_data, validate_frame
 from online_shopper.evaluate import main as evaluate
+from online_shopper.experiment import run_experiment
 from online_shopper.generate_smoke_data import generate_smoke_frame
 from online_shopper.modeling import classification_metrics, select_for_budget
 from online_shopper.predict import main as predict
@@ -17,6 +18,31 @@ from online_shopper.train import main as train
 
 
 class ShopperWorkflowTest(unittest.TestCase):
+    def test_synthetic_experiment_records_selection_contract(self) -> None:
+        baseline = run_experiment(
+            rows=120,
+            data_seed=17,
+            split_seed=23,
+            budget_fraction=0.15,
+            hypothesis="Проверить полный контракт эксперимента",
+        )
+        result = run_experiment(
+            rows=120,
+            data_seed=17,
+            split_seed=29,
+            budget_fraction=0.15,
+            hypothesis="Сравнить другое разбиение с базовым",
+            baseline=baseline,
+        )
+
+        self.assertEqual(result["dataset"]["mode"], "synthetic")
+        self.assertIn(result["selection"]["selected_model"], result["validation"]["models"])
+        self.assertEqual(result["test"]["selected_fraction"], 1 / 6)
+        self.assertEqual(
+            set(result["comparison"]["test_delta"]),
+            {"pr_auc", "roc_auc", "precision", "recall", "f1"},
+        )
+
     def test_contact_budget_is_exact_when_scores_are_tied(self) -> None:
         scores = np.full(10, 0.5)
         selected = select_for_budget(scores, 0.20)
