@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_sensitivity",
+  "hypothesis": "Оценить предел устойчивости при десяти процентах пропусков",
+  "parameters": {
+    "rows": 320,
+    "data_seed": 20250607,
+    "split_seed": 20250607,
+    "budget_fraction": 0.2,
+    "missing_rate": 0.1
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "positive_rate": 0.228125,
+    "missing_feature_values": 577,
+    "train_rows": 192,
+    "validation_rows": 64,
+    "test_rows": 64
+  },
+  "selection": {
+    "primary_metric": "pr_auc",
+    "selected_model": "logistic_regression"
+  },
+  "validation": {
+    "models": {
+      "dummy": {
+        "pr_auc": 0.234375,
+        "roc_auc": 0.5,
+        "accuracy": 0.71875,
+        "precision": 0.38461538461538464,
+        "recall": 0.3333333333333333,
+        "f1": 0.35714285714285715,
+        "selected_fraction": 0.203125,
+        "threshold": 0.22395833333333334,
+        "confusion_matrix": [
+          [
+            41,
+            8
+          ],
+          [
+            10,
+            5
+          ]
+        ]
+      },
+      "logistic_regression": {
+        "pr_auc": 0.46136414650446406,
+        "roc_auc": 0.6190476190476191,
+        "accuracy": 0.75,
+        "precision": 0.46153846153846156,
+        "recall": 0.4,
+        "f1": 0.42857142857142855,
+        "selected_fraction": 0.203125,
+        "threshold": 0.6870262481095775,
+        "confusion_matrix": [
+          [
+            42,
+            7
+          ],
+          [
+            9,
+            6
+          ]
+        ]
+      },
+      "decision_tree": {
+        "pr_auc": 0.3781402116402116,
+        "roc_auc": 0.610204081632653,
+        "accuracy": 0.75,
+        "precision": 0.46153846153846156,
+        "recall": 0.4,
+        "f1": 0.42857142857142855,
+        "selected_fraction": 0.203125,
+        "threshold": 0.8220689655172413,
+        "confusion_matrix": [
+          [
+            42,
+            7
+          ],
+          [
+            9,
+            6
+          ]
+        ]
+      },
+      "random_forest": {
+        "pr_auc": 0.3308393725742898,
+        "roc_auc": 0.6040816326530613,
+        "accuracy": 0.71875,
+        "precision": 0.38461538461538464,
+        "recall": 0.3333333333333333,
+        "f1": 0.35714285714285715,
+        "selected_fraction": 0.203125,
+        "threshold": 0.5567903815847893,
+        "confusion_matrix": [
+          [
+            41,
+            8
+          ],
+          [
+            10,
+            5
+          ]
+        ]
+      },
+      "gradient_boosting": {
+        "pr_auc": 0.40428376478966643,
+        "roc_auc": 0.6054421768707483,
+        "accuracy": 0.71875,
+        "precision": 0.38461538461538464,
+        "recall": 0.3333333333333333,
+        "f1": 0.35714285714285715,
+        "selected_fraction": 0.203125,
+        "threshold": 0.5986798587068332,
+        "confusion_matrix": [
+          [
+            41,
+            8
+          ],
+          [
+            10,
+            5
+          ]
+        ]
+      }
+    }
+  },
+  "test": {
+    "pr_auc": 0.2560079581753316,
+    "roc_auc": 0.5156462585034014,
+    "accuracy": 0.65625,
+    "precision": 0.23076923076923078,
+    "recall": 0.2,
+    "f1": 0.21428571428571427,
+    "selected_fraction": 0.203125,
+    "threshold": 0.569915247235031,
+    "confusion_matrix": [
+      [
+        39,
+        10
+      ],
+      [
+        12,
+        3
+      ]
+    ]
+  },
+  "comparison": {
+    "baseline_model": "gradient_boosting",
+    "model_changed": true,
+    "test_delta": {
+      "pr_auc": -0.026262213373990484,
+      "roc_auc": -0.01904761904761898,
+      "precision": -0.07692307692307693,
+      "recall": -0.06666666666666665,
+      "f1": -0.07142857142857142
+    }
+  }
+}

@@ -32,12 +32,16 @@ class ShopperWorkflowTest(unittest.TestCase):
             split_seed=29,
             budget_fraction=0.15,
             hypothesis="Сравнить другое разбиение с базовым",
+            missing_rate=0.10,
+            unseen_category_rate=0.10,
             baseline=baseline,
         )
 
         self.assertEqual(result["dataset"]["mode"], "synthetic")
         self.assertIn(result["selection"]["selected_model"], result["validation"]["models"])
         self.assertEqual(result["test"]["selected_fraction"], 1 / 6)
+        self.assertGreater(result["dataset"]["missing_feature_values"], 0)
+        self.assertGreater(result["dataset"]["unseen_category_values"], 0)
         self.assertEqual(
             set(result["comparison"]["test_delta"]),
             {"pr_auc", "roc_auc", "precision", "recall", "f1"},

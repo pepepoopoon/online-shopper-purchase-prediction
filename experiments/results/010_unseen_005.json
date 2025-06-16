@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_sensitivity",
+  "hypothesis": "Оценить качество при пяти процентах неизвестных категорий",
+  "parameters": {
+    "rows": 320,
+    "data_seed": 20250607,
+    "split_seed": 20250607,
+    "budget_fraction": 0.2,
+    "missing_rate": 0.0,
+    "unseen_category_rate": 0.05
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "positive_rate": 0.228125,
+    "missing_feature_values": 0,
+    "unseen_category_values": 52,
+    "train_rows": 192,
+    "validation_rows": 64,
+    "test_rows": 64
+  },
+  "selection": {
+    "primary_metric": "pr_auc",
+    "selected_model": "gradient_boosting"
+  },
+  "validation": {
+    "models": {
+      "dummy": {
+        "pr_auc": 0.234375,
+        "roc_auc": 0.5,
+        "accuracy": 0.71875,
+        "precision": 0.38461538461538464,
+        "recall": 0.3333333333333333,
+        "f1": 0.35714285714285715,
+        "selected_fraction": 0.203125,
+        "threshold": 0.22395833333333334,
+        "confusion_matrix": [
+          [
+            41,
+            8
+          ],
+          [
+            10,
+            5
+          ]
+        ]
+      },
+      "logistic_regression": {
+        "pr_auc": 0.36925152092820146,
+        "roc_auc": 0.5346938775510204,
+        "accuracy": 0.6875,
+        "precision": 0.3076923076923077,
+        "recall": 0.26666666666666666,
+        "f1": 0.2857142857142857,
+        "selected_fraction": 0.203125,
+        "threshold": 0.6864136142928925,
+        "confusion_matrix": [
+          [
+            40,
+            9
+          ],
+          [
+            11,
+            4
+          ]
+        ]
+      },
+      "decision_tree": {
+        "pr_auc": 0.3411342592592593,
+        "roc_auc": 0.6673469387755102,
+        "accuracy": 0.75,
+        "precision": 0.46153846153846156,
+        "recall": 0.4,
+        "f1": 0.42857142857142855,
+        "selected_fraction": 0.203125,
+        "threshold": 0.6340425531914894,
+        "confusion_matrix": [
+          [
+            42,
+            7
+          ],
+          [
+            9,
+            6
+          ]
+        ]
+      },
+      "random_forest": {
+        "pr_auc": 0.35362196259795864,
+        "roc_auc": 0.5578231292517006,
+        "accuracy": 0.65625,
+        "precision": 0.23076923076923078,
+        "recall": 0.2,
+        "f1": 0.21428571428571427,
+        "selected_fraction": 0.203125,
+        "threshold": 0.4940708025634496,
+        "confusion_matrix": [
+          [
+            39,
+            10
+          ],
+          [
+            12,
+            3
+          ]
+        ]
+      },
+      "gradient_boosting": {
+        "pr_auc": 0.41438744166814345,
+        "roc_auc": 0.601360544217687,
+        "accuracy": 0.71875,
+        "precision": 0.38461538461538464,
+        "recall": 0.3333333333333333,
+        "f1": 0.35714285714285715,
+        "selected_fraction": 0.203125,
+        "threshold": 0.6245141032298667,
+        "confusion_matrix": [
+          [
+            41,
+            8
+          ],
+          [
+            10,
+            5
+          ]
+        ]
+      }
+    }
+  },
+  "test": {
+    "pr_auc": 0.2839777050857309,
+    "roc_auc": 0.5414965986394558,
+    "accuracy": 0.65625,
+    "precision": 0.23076923076923078,
+    "recall": 0.2,
+    "f1": 0.21428571428571427,
+    "selected_fraction": 0.203125,
+    "threshold": 0.24750823371951147,
+    "confusion_matrix": [
+      [
+        39,
+        10
+      ],
+      [
+        12,
+        3
+      ]
+    ]
+  },
+  "comparison": {
+    "baseline_model": "gradient_boosting",
+    "model_changed": false,
+    "test_delta": {
+      "pr_auc": 0.0017075335364087896,
+      "roc_auc": 0.006802721088435382,
+      "precision": -0.07692307692307693,
+      "recall": -0.06666666666666665,
+      "f1": -0.07142857142857142
+    }
+  }
+}

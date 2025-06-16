@@ -6,9 +6,45 @@ import argparse
 import json
 from pathlib import Path
 
-from .data import FEATURES, TARGET, split_data, validate_frame
+import numpy as np
+
+from .data import (
+    CATEGORICAL_FEATURES,
+    FEATURES,
+    NUMERIC_FEATURES,
+    TARGET,
+    split_data,
+    validate_frame,
+)
 from .generate_smoke_data import generate_smoke_frame
 from .modeling import candidate_models, classification_metrics
+
+
+def inject_missing_values(frame, *, rate: float, seed: int):
+    """Inject missing feature values without changing the target."""
+    if not 0 <= rate < 0.5:
+        raise ValueError("missing_rate must be in [0, 0.5)")
+    if rate == 0:
+        return frame.copy()
+    result = frame.copy()
+    rng = np.random.default_rng(seed)
+    for column in NUMERIC_FEATURES + CATEGORICAL_FEATURES:
+        result.loc[rng.random(len(result)) < rate, column] = np.nan
+    return result
+
+
+def inject_unseen_categories(frame, *, rate: float, seed: int):
+    """Replace a share of categories after splitting to test unknown-value handling."""
+    if not 0 <= rate < 0.5:
+        raise ValueError("unseen_category_rate must be in [0, 0.5)")
+    result = frame.copy()
+    if rate == 0:
+        return result
+    rng = np.random.default_rng(seed)
+    for column in CATEGORICAL_FEATURES:
+        mask = rng.random(len(result)) < rate
+        result.loc[mask, column] = f"__UNSEEN_{column}__"
+    return result
 
 
 def run_experiment(
@@ -18,6 +54,8 @@ def run_experiment(
     split_seed: int,
     budget_fraction: float,
     hypothesis: str,
+    missing_rate: float = 0.0,
+    unseen_category_rate: float = 0.0,
     baseline: dict[str, object] | None = None,
 ) -> dict[str, object]:
     """Train every candidate and return deterministic validation and test metrics."""
@@ -26,8 +64,21 @@ def run_experiment(
     if not 0 < budget_fraction <= 1:
         raise ValueError("budget_fraction must be in (0, 1]")
 
-    frame = validate_frame(generate_smoke_frame(rows=rows, seed=data_seed))
+    generated = generate_smoke_frame(rows=rows, seed=data_seed)
+    frame = validate_frame(
+        inject_missing_values(generated, rate=missing_rate, seed=data_seed + 10_003)
+    )
     train, validation, test = split_data(frame, seed=split_seed)
+    validation = inject_unseen_categories(
+        validation,
+        rate=unseen_category_rate,
+        seed=data_seed + split_seed + 20_003,
+    )
+    test = inject_unseen_categories(
+        test,
+        rate=unseen_category_rate,
+        seed=data_seed + split_seed + 30_007,
+    )
     validation_metrics: dict[str, dict[str, object]] = {}
     fitted_models = {}
 
@@ -55,10 +106,23 @@ def run_experiment(
             "data_seed": data_seed,
             "split_seed": split_seed,
             "budget_fraction": budget_fraction,
+            "missing_rate": missing_rate,
+            "unseen_category_rate": unseen_category_rate,
         },
         "dataset": {
             "mode": "synthetic",
             "positive_rate": float(frame[TARGET].mean()),
+            "missing_feature_values": int(frame[FEATURES].isna().sum().sum()),
+            "unseen_category_values": int(
+                validation[CATEGORICAL_FEATURES]
+                .astype(str)
+                .apply(lambda column: column.str.startswith("__UNSEEN_").sum())
+                .sum()
+                + test[CATEGORICAL_FEATURES]
+                .astype(str)
+                .apply(lambda column: column.str.startswith("__UNSEEN_").sum())
+                .sum()
+            ),
             "train_rows": len(train),
             "validation_rows": len(validation),
             "test_rows": len(test),
@@ -96,6 +160,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--split-seed", type=int, default=20250607)
     parser.add_argument("--budget-fraction", type=float, default=0.20)
     parser.add_argument("--baseline", type=Path)
+    parser.add_argument("--missing-rate", type=float, default=0.0)
+    parser.add_argument("--unseen-category-rate", type=float, default=0.0)
     args = parser.parse_args(argv)
 
     baseline = None
@@ -107,6 +173,8 @@ def main(argv: list[str] | None = None) -> None:
         split_seed=args.split_seed,
         budget_fraction=args.budget_fraction,
         hypothesis=args.hypothesis,
+        missing_rate=args.missing_rate,
+        unseen_category_rate=args.unseen_category_rate,
         baseline=baseline,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
