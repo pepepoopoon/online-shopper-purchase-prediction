@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_sensitivity",
+  "hypothesis": "Проверить сочетание выборки 640, бюджета 50 процента и разбиения 300119",
+  "parameters": {
+    "rows": 640,
+    "data_seed": 20250607,
+    "split_seed": 300119,
+    "budget_fraction": 0.5,
+    "missing_rate": 0.0,
+    "unseen_category_rate": 0.0
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "positive_rate": 0.203125,
+    "missing_feature_values": 0,
+    "unseen_category_values": 0,
+    "train_rows": 384,
+    "validation_rows": 128,
+    "test_rows": 128
+  },
+  "selection": {
+    "primary_metric": "pr_auc",
+    "selected_model": "gradient_boosting"
+  },
+  "validation": {
+    "models": {
+      "dummy": {
+        "pr_auc": 0.203125,
+        "roc_auc": 0.5,
+        "accuracy": 0.5,
+        "precision": 0.203125,
+        "recall": 0.5,
+        "f1": 0.28888888888888886,
+        "selected_fraction": 0.5,
+        "threshold": 0.203125,
+        "confusion_matrix": [
+          [
+            51,
+            51
+          ],
+          [
+            13,
+            13
+          ]
+        ]
+      },
+      "logistic_regression": {
+        "pr_auc": 0.4291897953516526,
+        "roc_auc": 0.6496983408748115,
+        "accuracy": 0.59375,
+        "precision": 0.296875,
+        "recall": 0.7307692307692307,
+        "f1": 0.4222222222222222,
+        "selected_fraction": 0.5,
+        "threshold": 0.3244434998670515,
+        "confusion_matrix": [
+          [
+            57,
+            45
+          ],
+          [
+            7,
+            19
+          ]
+        ]
+      },
+      "decision_tree": {
+        "pr_auc": 0.37574642512287104,
+        "roc_auc": 0.6461161387631975,
+        "accuracy": 0.5625,
+        "precision": 0.265625,
+        "recall": 0.6538461538461539,
+        "f1": 0.37777777777777777,
+        "selected_fraction": 0.5,
+        "threshold": 0.0,
+        "confusion_matrix": [
+          [
+            55,
+            47
+          ],
+          [
+            9,
+            17
+          ]
+        ]
+      },
+      "random_forest": {
+        "pr_auc": 0.3823233272499673,
+        "roc_auc": 0.700603318250377,
+        "accuracy": 0.578125,
+        "precision": 0.28125,
+        "recall": 0.6923076923076923,
+        "f1": 0.4,
+        "selected_fraction": 0.5,
+        "threshold": 0.34380393911643903,
+        "confusion_matrix": [
+          [
+            56,
+            46
+          ],
+          [
+            8,
+            18
+          ]
+        ]
+      },
+      "gradient_boosting": {
+        "pr_auc": 0.44494824182372317,
+        "roc_auc": 0.6896681749622926,
+        "accuracy": 0.578125,
+        "precision": 0.28125,
+        "recall": 0.6923076923076923,
+        "f1": 0.4,
+        "selected_fraction": 0.5,
+        "threshold": 0.07216475954579235,
+        "confusion_matrix": [
+          [
+            56,
+            46
+          ],
+          [
+            8,
+            18
+          ]
+        ]
+      }
+    }
+  },
+  "test": {
+    "pr_auc": 0.5456877677923527,
+    "roc_auc": 0.7929864253393665,
+    "accuracy": 0.640625,
+    "precision": 0.34375,
+    "recall": 0.8461538461538461,
+    "f1": 0.4888888888888889,
+    "selected_fraction": 0.5,
+    "threshold": 0.0809183215523851,
+    "confusion_matrix": [
+      [
+        60,
+        42
+      ],
+      [
+        4,
+        22
+      ]
+    ]
+  },
+  "segments": {
+    "VisitorType": {
+      "New_Visitor": {
+        "rows": 28,
+        "positive_rate": 0.17857142857142858,
+        "selected_rate": 0.5714285714285714,
+        "mean_score": 0.18819318136536237,
+        "false_negative_rate": 0.0
+      },
+      "Other": {
+        "rows": 2,
+        "positive_rate": 0.0,
+        "selected_rate": 0.0,
+        "mean_score": 0.04572438413628169,
+        "false_negative_rate": 0.0
+      },
+      "Returning_Visitor": {
+        "rows": 98,
+        "positive_rate": 0.21428571428571427,
+        "selected_rate": 0.4897959183673469,
+        "mean_score": 0.16616858562470552,
+        "false_negative_rate": 0.04081632653061224
+      }
+    },
+    "Month": {
+      "Aug": {
+        "rows": 18,
+        "positive_rate": 0.1111111111111111,
+        "selected_rate": 0.5,
+        "mean_score": 0.15836908020004484,
+        "false_negative_rate": 0.0
+      },
+      "Dec": {
+        "rows": 19,
+        "positive_rate": 0.2631578947368421,
+        "selected_rate": 0.47368421052631576,
+        "mean_score": 0.10649791453911715,
+        "false_negative_rate": 0.05263157894736842
+      },
+      "Feb": {
+        "rows": 14,
+        "positive_rate": 0.14285714285714285,
+        "selected_rate": 0.7142857142857143,
+        "mean_score": 0.1987294147347394,
+        "false_negative_rate": 0.0
+      },
+      "Jul": {
+        "rows": 14,
+        "positive_rate": 0.21428571428571427,
+        "selected_rate": 0.35714285714285715,
+        "mean_score": 0.22362108225715827,
+        "false_negative_rate": 0.0
+      },
+      "June": {
+        "rows": 16,
+        "positive_rate": 0.3125,
+        "selected_rate": 0.5,
+        "mean_score": 0.16918105876490636,
+        "false_negative_rate": 0.0
+      },
+      "Mar": {
+        "rows": 19,
+        "positive_rate": 0.10526315789473684,
+        "selected_rate": 0.42105263157894735,
+        "mean_score": 0.18293463012786562,
+        "false_negative_rate": 0.0
+      },
+      "May": {
+        "rows": 13,
+        "positive_rate": 0.3076923076923077,
+        "selected_rate": 0.46153846153846156,
+        "mean_score": 0.19025342704912102,
+        "false_negative_rate": 0.07692307692307693
+      },
+      "Nov": {
+        "rows": 15,
+        "positive_rate": 0.2,
+        "selected_rate": 0.6,
+        "mean_score": 0.14682793304578184,
+        "false_negative_rate": 0.13333333333333333
+      }
+    }
+  },
+  "comparison": {
+    "baseline_model": "gradient_boosting",
+    "model_changed": false,
+    "test_delta": {
+      "pr_auc": 0.2634175962430306,
+      "roc_auc": 0.2582925477883461,
+      "precision": 0.03605769230769229,
+      "recall": 0.5794871794871794,
+      "f1": 0.20317460317460317
+    }
+  }
+}

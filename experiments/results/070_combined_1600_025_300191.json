@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_sensitivity",
+  "hypothesis": "Проверить сочетание выборки 1600, бюджета 25 процента и разбиения 300191",
+  "parameters": {
+    "rows": 1600,
+    "data_seed": 20250607,
+    "split_seed": 300191,
+    "budget_fraction": 0.25,
+    "missing_rate": 0.0,
+    "unseen_category_rate": 0.0
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "positive_rate": 0.22125,
+    "missing_feature_values": 0,
+    "unseen_category_values": 0,
+    "train_rows": 960,
+    "validation_rows": 320,
+    "test_rows": 320
+  },
+  "selection": {
+    "primary_metric": "pr_auc",
+    "selected_model": "logistic_regression"
+  },
+  "validation": {
+    "models": {
+      "dummy": {
+        "pr_auc": 0.221875,
+        "roc_auc": 0.5,
+        "accuracy": 0.640625,
+        "precision": 0.225,
+        "recall": 0.2535211267605634,
+        "f1": 0.23841059602649006,
+        "selected_fraction": 0.25,
+        "threshold": 0.22083333333333333,
+        "confusion_matrix": [
+          [
+            187,
+            62
+          ],
+          [
+            53,
+            18
+          ]
+        ]
+      },
+      "logistic_regression": {
+        "pr_auc": 0.4551842579872883,
+        "roc_auc": 0.6990214378641325,
+        "accuracy": 0.746875,
+        "precision": 0.4375,
+        "recall": 0.49295774647887325,
+        "f1": 0.46357615894039733,
+        "selected_fraction": 0.25,
+        "threshold": 0.6252094127694602,
+        "confusion_matrix": [
+          [
+            204,
+            45
+          ],
+          [
+            36,
+            35
+          ]
+        ]
+      },
+      "decision_tree": {
+        "pr_auc": 0.34370303811686814,
+        "roc_auc": 0.6393743990044686,
+        "accuracy": 0.721875,
+        "precision": 0.3875,
+        "recall": 0.43661971830985913,
+        "f1": 0.4105960264900662,
+        "selected_fraction": 0.25,
+        "threshold": 0.5671955202986473,
+        "confusion_matrix": [
+          [
+            200,
+            49
+          ],
+          [
+            40,
+            31
+          ]
+        ]
+      },
+      "random_forest": {
+        "pr_auc": 0.4509642702822844,
+        "roc_auc": 0.7370326375926239,
+        "accuracy": 0.778125,
+        "precision": 0.5,
+        "recall": 0.5633802816901409,
+        "f1": 0.5298013245033113,
+        "selected_fraction": 0.25,
+        "threshold": 0.526833694083694,
+        "confusion_matrix": [
+          [
+            209,
+            40
+          ],
+          [
+            31,
+            40
+          ]
+        ]
+      },
+      "gradient_boosting": {
+        "pr_auc": 0.43016643588364817,
+        "roc_auc": 0.7332428304768368,
+        "accuracy": 0.753125,
+        "precision": 0.45,
+        "recall": 0.5070422535211268,
+        "f1": 0.4768211920529801,
+        "selected_fraction": 0.25,
+        "threshold": 0.3162718698391559,
+        "confusion_matrix": [
+          [
+            205,
+            44
+          ],
+          [
+            35,
+            36
+          ]
+        ]
+      }
+    }
+  },
+  "test": {
+    "pr_auc": 0.568900193715542,
+    "roc_auc": 0.7450647661066802,
+    "accuracy": 0.765625,
+    "precision": 0.475,
+    "recall": 0.5352112676056338,
+    "f1": 0.5033112582781457,
+    "selected_fraction": 0.25,
+    "threshold": 0.6213857517426303,
+    "confusion_matrix": [
+      [
+        207,
+        42
+      ],
+      [
+        33,
+        38
+      ]
+    ]
+  },
+  "segments": {
+    "VisitorType": {
+      "New_Visitor": {
+        "rows": 81,
+        "positive_rate": 0.18518518518518517,
+        "selected_rate": 0.1111111111111111,
+        "mean_score": 0.3334115183388363,
+        "false_negative_rate": 0.12345679012345678
+      },
+      "Other": {
+        "rows": 10,
+        "positive_rate": 0.1,
+        "selected_rate": 0.0,
+        "mean_score": 0.21776164904902276,
+        "false_negative_rate": 0.1
+      },
+      "Returning_Visitor": {
+        "rows": 229,
+        "positive_rate": 0.24017467248908297,
+        "selected_rate": 0.31004366812227074,
+        "mean_score": 0.4810957286164192,
+        "false_negative_rate": 0.09606986899563319
+      }
+    },
+    "Month": {
+      "Aug": {
+        "rows": 38,
+        "positive_rate": 0.2631578947368421,
+        "selected_rate": 0.2894736842105263,
+        "mean_score": 0.44706362936211813,
+        "false_negative_rate": 0.15789473684210525
+      },
+      "Dec": {
+        "rows": 48,
+        "positive_rate": 0.25,
+        "selected_rate": 0.22916666666666666,
+        "mean_score": 0.39350069630167983,
+        "false_negative_rate": 0.14583333333333334
+      },
+      "Feb": {
+        "rows": 36,
+        "positive_rate": 0.19444444444444445,
+        "selected_rate": 0.2222222222222222,
+        "mean_score": 0.3879247762929924,
+        "false_negative_rate": 0.05555555555555555
+      },
+      "Jul": {
+        "rows": 46,
+        "positive_rate": 0.2826086956521739,
+        "selected_rate": 0.21739130434782608,
+        "mean_score": 0.4475527900288518,
+        "false_negative_rate": 0.15217391304347827
+      },
+      "June": {
+        "rows": 39,
+        "positive_rate": 0.1794871794871795,
+        "selected_rate": 0.2564102564102564,
+        "mean_score": 0.44159202867144726,
+        "false_negative_rate": 0.07692307692307693
+      },
+      "Mar": {
+        "rows": 43,
+        "positive_rate": 0.23255813953488372,
+        "selected_rate": 0.20930232558139536,
+        "mean_score": 0.4411915051006214,
+        "false_negative_rate": 0.11627906976744186
+      },
+      "May": {
+        "rows": 33,
+        "positive_rate": 0.09090909090909091,
+        "selected_rate": 0.21212121212121213,
+        "mean_score": 0.44101405915287895,
+        "false_negative_rate": 0.030303030303030304
+      },
+      "Nov": {
+        "rows": 37,
+        "positive_rate": 0.24324324324324326,
+        "selected_rate": 0.3783783783783784,
+        "mean_score": 0.49132194360599346,
+        "false_negative_rate": 0.05405405405405406
+      }
+    }
+  },
+  "comparison": {
+    "baseline_model": "gradient_boosting",
+    "model_changed": true,
+    "test_delta": {
+      "pr_auc": 0.2866300221662199,
+      "roc_auc": 0.21037088855565977,
+      "precision": 0.16730769230769227,
+      "recall": 0.2685446009389671,
+      "f1": 0.21759697256386
+    }
+  }
+}

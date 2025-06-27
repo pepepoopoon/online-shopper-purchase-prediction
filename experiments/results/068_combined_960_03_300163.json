@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_sensitivity",
+  "hypothesis": "Проверить сочетание выборки 960, бюджета 30 процента и разбиения 300163",
+  "parameters": {
+    "rows": 960,
+    "data_seed": 20250607,
+    "split_seed": 300163,
+    "budget_fraction": 0.3,
+    "missing_rate": 0.0,
+    "unseen_category_rate": 0.0
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "positive_rate": 0.20729166666666668,
+    "missing_feature_values": 0,
+    "unseen_category_values": 0,
+    "train_rows": 576,
+    "validation_rows": 192,
+    "test_rows": 192
+  },
+  "selection": {
+    "primary_metric": "pr_auc",
+    "selected_model": "logistic_regression"
+  },
+  "validation": {
+    "models": {
+      "dummy": {
+        "pr_auc": 0.20833333333333334,
+        "roc_auc": 0.5,
+        "accuracy": 0.6041666666666666,
+        "precision": 0.1896551724137931,
+        "recall": 0.275,
+        "f1": 0.22448979591836735,
+        "selected_fraction": 0.3020833333333333,
+        "threshold": 0.2065972222222222,
+        "confusion_matrix": [
+          [
+            105,
+            47
+          ],
+          [
+            29,
+            11
+          ]
+        ]
+      },
+      "logistic_regression": {
+        "pr_auc": 0.5801948081813195,
+        "roc_auc": 0.7605263157894736,
+        "accuracy": 0.78125,
+        "precision": 0.4827586206896552,
+        "recall": 0.7,
+        "f1": 0.5714285714285714,
+        "selected_fraction": 0.3020833333333333,
+        "threshold": 0.5580672191087273,
+        "confusion_matrix": [
+          [
+            122,
+            30
+          ],
+          [
+            12,
+            28
+          ]
+        ]
+      },
+      "decision_tree": {
+        "pr_auc": 0.35578297460380304,
+        "roc_auc": 0.6645559210526316,
+        "accuracy": 0.6875,
+        "precision": 0.3275862068965517,
+        "recall": 0.475,
+        "f1": 0.3877551020408163,
+        "selected_fraction": 0.3020833333333333,
+        "threshold": 0.766993006993007,
+        "confusion_matrix": [
+          [
+            113,
+            39
+          ],
+          [
+            21,
+            19
+          ]
+        ]
+      },
+      "random_forest": {
+        "pr_auc": 0.47562208623357716,
+        "roc_auc": 0.7610197368421053,
+        "accuracy": 0.7604166666666666,
+        "precision": 0.4482758620689655,
+        "recall": 0.65,
+        "f1": 0.5306122448979592,
+        "selected_fraction": 0.3020833333333333,
+        "threshold": 0.5097793830937283,
+        "confusion_matrix": [
+          [
+            120,
+            32
+          ],
+          [
+            14,
+            26
+          ]
+        ]
+      },
+      "gradient_boosting": {
+        "pr_auc": 0.576718036020914,
+        "roc_auc": 0.777467105263158,
+        "accuracy": 0.7604166666666666,
+        "precision": 0.4482758620689655,
+        "recall": 0.65,
+        "f1": 0.5306122448979592,
+        "selected_fraction": 0.3020833333333333,
+        "threshold": 0.2969454674310078,
+        "confusion_matrix": [
+          [
+            120,
+            32
+          ],
+          [
+            14,
+            26
+          ]
+        ]
+      }
+    }
+  },
+  "test": {
+    "pr_auc": 0.5958861618198286,
+    "roc_auc": 0.8314144736842105,
+    "accuracy": 0.7708333333333334,
+    "precision": 0.46551724137931033,
+    "recall": 0.675,
+    "f1": 0.5510204081632653,
+    "selected_fraction": 0.3020833333333333,
+    "threshold": 0.5747873340452199,
+    "confusion_matrix": [
+      [
+        121,
+        31
+      ],
+      [
+        13,
+        27
+      ]
+    ]
+  },
+  "segments": {
+    "VisitorType": {
+      "New_Visitor": {
+        "rows": 58,
+        "positive_rate": 0.13793103448275862,
+        "selected_rate": 0.25862068965517243,
+        "mean_score": 0.41396102249417643,
+        "false_negative_rate": 0.05172413793103448
+      },
+      "Other": {
+        "rows": 3,
+        "positive_rate": 0.0,
+        "selected_rate": 0.3333333333333333,
+        "mean_score": 0.3937664405866544,
+        "false_negative_rate": 0.0
+      },
+      "Returning_Visitor": {
+        "rows": 131,
+        "positive_rate": 0.24427480916030533,
+        "selected_rate": 0.32061068702290074,
+        "mean_score": 0.46127151012812684,
+        "false_negative_rate": 0.07633587786259542
+      }
+    },
+    "Month": {
+      "Aug": {
+        "rows": 20,
+        "positive_rate": 0.15,
+        "selected_rate": 0.35,
+        "mean_score": 0.5006442436290838,
+        "false_negative_rate": 0.05
+      },
+      "Dec": {
+        "rows": 30,
+        "positive_rate": 0.16666666666666666,
+        "selected_rate": 0.23333333333333334,
+        "mean_score": 0.39265676523338017,
+        "false_negative_rate": 0.06666666666666667
+      },
+      "Feb": {
+        "rows": 27,
+        "positive_rate": 0.25925925925925924,
+        "selected_rate": 0.5555555555555556,
+        "mean_score": 0.5886634747018837,
+        "false_negative_rate": 0.037037037037037035
+      },
+      "Jul": {
+        "rows": 26,
+        "positive_rate": 0.23076923076923078,
+        "selected_rate": 0.19230769230769232,
+        "mean_score": 0.40876514616009013,
+        "false_negative_rate": 0.15384615384615385
+      },
+      "June": {
+        "rows": 20,
+        "positive_rate": 0.15,
+        "selected_rate": 0.2,
+        "mean_score": 0.35705450067113026,
+        "false_negative_rate": 0.1
+      },
+      "Mar": {
+        "rows": 26,
+        "positive_rate": 0.23076923076923078,
+        "selected_rate": 0.19230769230769232,
+        "mean_score": 0.40777149907033095,
+        "false_negative_rate": 0.11538461538461539
+      },
+      "May": {
+        "rows": 23,
+        "positive_rate": 0.17391304347826086,
+        "selected_rate": 0.2608695652173913,
+        "mean_score": 0.394066930824483,
+        "false_negative_rate": 0.0
+      },
+      "Nov": {
+        "rows": 20,
+        "positive_rate": 0.3,
+        "selected_rate": 0.45,
+        "mean_score": 0.5248261304148105,
+        "false_negative_rate": 0.0
+      }
+    }
+  },
+  "comparison": {
+    "baseline_model": "gradient_boosting",
+    "model_changed": true,
+    "test_delta": {
+      "pr_auc": 0.31361599027050646,
+      "roc_auc": 0.29672059613319013,
+      "precision": 0.15782493368700262,
+      "recall": 0.4083333333333334,
+      "f1": 0.26530612244897955
+    }
+  }
+}

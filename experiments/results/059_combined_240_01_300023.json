@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_sensitivity",
+  "hypothesis": "Проверить сочетание выборки 240, бюджета 10 процента и разбиения 300023",
+  "parameters": {
+    "rows": 240,
+    "data_seed": 20250607,
+    "split_seed": 300023,
+    "budget_fraction": 0.1,
+    "missing_rate": 0.0,
+    "unseen_category_rate": 0.0
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "positive_rate": 0.2125,
+    "missing_feature_values": 0,
+    "unseen_category_values": 0,
+    "train_rows": 144,
+    "validation_rows": 48,
+    "test_rows": 48
+  },
+  "selection": {
+    "primary_metric": "pr_auc",
+    "selected_model": "random_forest"
+  },
+  "validation": {
+    "models": {
+      "dummy": {
+        "pr_auc": 0.20833333333333334,
+        "roc_auc": 0.5,
+        "accuracy": 0.7291666666666666,
+        "precision": 0.2,
+        "recall": 0.1,
+        "f1": 0.13333333333333333,
+        "selected_fraction": 0.10416666666666667,
+        "threshold": 0.2152777777777778,
+        "confusion_matrix": [
+          [
+            34,
+            4
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      },
+      "logistic_regression": {
+        "pr_auc": 0.5898603779412294,
+        "roc_auc": 0.7157894736842105,
+        "accuracy": 0.8541666666666666,
+        "precision": 0.8,
+        "recall": 0.4,
+        "f1": 0.5333333333333333,
+        "selected_fraction": 0.10416666666666667,
+        "threshold": 0.9249540460572032,
+        "confusion_matrix": [
+          [
+            37,
+            1
+          ],
+          [
+            6,
+            4
+          ]
+        ]
+      },
+      "decision_tree": {
+        "pr_auc": 0.49559523809523814,
+        "roc_auc": 0.6355263157894737,
+        "accuracy": 0.8541666666666666,
+        "precision": 0.8,
+        "recall": 0.4,
+        "f1": 0.5333333333333333,
+        "selected_fraction": 0.10416666666666667,
+        "threshold": 1.0,
+        "confusion_matrix": [
+          [
+            37,
+            1
+          ],
+          [
+            6,
+            4
+          ]
+        ]
+      },
+      "random_forest": {
+        "pr_auc": 0.6017347692957449,
+        "roc_auc": 0.6973684210526316,
+        "accuracy": 0.8541666666666666,
+        "precision": 0.8,
+        "recall": 0.4,
+        "f1": 0.5333333333333333,
+        "selected_fraction": 0.10416666666666667,
+        "threshold": 0.6581548031743715,
+        "confusion_matrix": [
+          [
+            37,
+            1
+          ],
+          [
+            6,
+            4
+          ]
+        ]
+      },
+      "gradient_boosting": {
+        "pr_auc": 0.5559203762780264,
+        "roc_auc": 0.6447368421052632,
+        "accuracy": 0.8541666666666666,
+        "precision": 0.8,
+        "recall": 0.4,
+        "f1": 0.5333333333333333,
+        "selected_fraction": 0.10416666666666667,
+        "threshold": 0.9813507994798925,
+        "confusion_matrix": [
+          [
+            37,
+            1
+          ],
+          [
+            6,
+            4
+          ]
+        ]
+      }
+    }
+  },
+  "test": {
+    "pr_auc": 0.25175907419338334,
+    "roc_auc": 0.55,
+    "accuracy": 0.7291666666666666,
+    "precision": 0.2,
+    "recall": 0.1,
+    "f1": 0.13333333333333333,
+    "selected_fraction": 0.10416666666666667,
+    "threshold": 0.5890004812653806,
+    "confusion_matrix": [
+      [
+        34,
+        4
+      ],
+      [
+        9,
+        1
+      ]
+    ]
+  },
+  "segments": {
+    "VisitorType": {
+      "New_Visitor": {
+        "rows": 13,
+        "positive_rate": 0.15384615384615385,
+        "selected_rate": 0.07692307692307693,
+        "mean_score": 0.36056641790736765,
+        "false_negative_rate": 0.15384615384615385
+      },
+      "Other": {
+        "rows": 1,
+        "positive_rate": 0.0,
+        "selected_rate": 0.0,
+        "mean_score": 0.39170126170126174,
+        "false_negative_rate": 0.0
+      },
+      "Returning_Visitor": {
+        "rows": 34,
+        "positive_rate": 0.23529411764705882,
+        "selected_rate": 0.11764705882352941,
+        "mean_score": 0.3865462177343845,
+        "false_negative_rate": 0.20588235294117646
+      }
+    },
+    "Month": {
+      "Aug": {
+        "rows": 4,
+        "positive_rate": 0.25,
+        "selected_rate": 0.0,
+        "mean_score": 0.38379431753541016,
+        "false_negative_rate": 0.25
+      },
+      "Dec": {
+        "rows": 2,
+        "positive_rate": 0.0,
+        "selected_rate": 0.0,
+        "mean_score": 0.42788103389665877,
+        "false_negative_rate": 0.0
+      },
+      "Feb": {
+        "rows": 12,
+        "positive_rate": 0.25,
+        "selected_rate": 0.08333333333333333,
+        "mean_score": 0.42603709033635284,
+        "false_negative_rate": 0.25
+      },
+      "Jul": {
+        "rows": 5,
+        "positive_rate": 0.4,
+        "selected_rate": 0.0,
+        "mean_score": 0.3130622791189868,
+        "false_negative_rate": 0.4
+      },
+      "June": {
+        "rows": 7,
+        "positive_rate": 0.14285714285714285,
+        "selected_rate": 0.0,
+        "mean_score": 0.30102094066691665,
+        "false_negative_rate": 0.14285714285714285
+      },
+      "Mar": {
+        "rows": 6,
+        "positive_rate": 0.16666666666666666,
+        "selected_rate": 0.16666666666666666,
+        "mean_score": 0.3975936918778562,
+        "false_negative_rate": 0.16666666666666666
+      },
+      "May": {
+        "rows": 5,
+        "positive_rate": 0.4,
+        "selected_rate": 0.4,
+        "mean_score": 0.40228807285100354,
+        "false_negative_rate": 0.2
+      },
+      "Nov": {
+        "rows": 7,
+        "positive_rate": 0.0,
+        "selected_rate": 0.14285714285714285,
+        "mean_score": 0.37839873995848833,
+        "false_negative_rate": 0.0
+      }
+    }
+  },
+  "comparison": {
+    "baseline_model": "gradient_boosting",
+    "model_changed": true,
+    "test_delta": {
+      "pr_auc": -0.030511097355938765,
+      "roc_auc": 0.015306122448979664,
+      "precision": -0.1076923076923077,
+      "recall": -0.16666666666666666,
+      "f1": -0.15238095238095237
+    }
+  }
+}
