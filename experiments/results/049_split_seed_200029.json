@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_sensitivity",
+  "hypothesis": "Проверить устойчивость выбора модели к разбиению с seed 200029",
+  "parameters": {
+    "rows": 320,
+    "data_seed": 20250607,
+    "split_seed": 200029,
+    "budget_fraction": 0.2,
+    "missing_rate": 0.0,
+    "unseen_category_rate": 0.0
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "positive_rate": 0.228125,
+    "missing_feature_values": 0,
+    "unseen_category_values": 0,
+    "train_rows": 192,
+    "validation_rows": 64,
+    "test_rows": 64
+  },
+  "selection": {
+    "primary_metric": "pr_auc",
+    "selected_model": "logistic_regression"
+  },
+  "validation": {
+    "models": {
+      "dummy": {
+        "pr_auc": 0.234375,
+        "roc_auc": 0.5,
+        "accuracy": 0.65625,
+        "precision": 0.23076923076923078,
+        "recall": 0.2,
+        "f1": 0.21428571428571427,
+        "selected_fraction": 0.203125,
+        "threshold": 0.22395833333333334,
+        "confusion_matrix": [
+          [
+            39,
+            10
+          ],
+          [
+            12,
+            3
+          ]
+        ]
+      },
+      "logistic_regression": {
+        "pr_auc": 0.4516987265943274,
+        "roc_auc": 0.653061224489796,
+        "accuracy": 0.78125,
+        "precision": 0.5384615384615384,
+        "recall": 0.4666666666666667,
+        "f1": 0.5,
+        "selected_fraction": 0.203125,
+        "threshold": 0.7452923340126154,
+        "confusion_matrix": [
+          [
+            43,
+            6
+          ],
+          [
+            8,
+            7
+          ]
+        ]
+      },
+      "decision_tree": {
+        "pr_auc": 0.2763060819109206,
+        "roc_auc": 0.5564625850340136,
+        "accuracy": 0.71875,
+        "precision": 0.38461538461538464,
+        "recall": 0.3333333333333333,
+        "f1": 0.35714285714285715,
+        "selected_fraction": 0.203125,
+        "threshold": 0.8584362139917696,
+        "confusion_matrix": [
+          [
+            41,
+            8
+          ],
+          [
+            10,
+            5
+          ]
+        ]
+      },
+      "random_forest": {
+        "pr_auc": 0.41171249961817913,
+        "roc_auc": 0.6680272108843537,
+        "accuracy": 0.6875,
+        "precision": 0.3076923076923077,
+        "recall": 0.26666666666666666,
+        "f1": 0.2857142857142857,
+        "selected_fraction": 0.203125,
+        "threshold": 0.5111725925218572,
+        "confusion_matrix": [
+          [
+            40,
+            9
+          ],
+          [
+            11,
+            4
+          ]
+        ]
+      },
+      "gradient_boosting": {
+        "pr_auc": 0.3669250694511723,
+        "roc_auc": 0.6272108843537415,
+        "accuracy": 0.71875,
+        "precision": 0.38461538461538464,
+        "recall": 0.3333333333333333,
+        "f1": 0.35714285714285715,
+        "selected_fraction": 0.203125,
+        "threshold": 0.26607989186887393,
+        "confusion_matrix": [
+          [
+            41,
+            8
+          ],
+          [
+            10,
+            5
+          ]
+        ]
+      }
+    }
+  },
+  "test": {
+    "pr_auc": 0.35778646921695706,
+    "roc_auc": 0.6612244897959183,
+    "accuracy": 0.71875,
+    "precision": 0.38461538461538464,
+    "recall": 0.3333333333333333,
+    "f1": 0.35714285714285715,
+    "selected_fraction": 0.203125,
+    "threshold": 0.6667937019521384,
+    "confusion_matrix": [
+      [
+        41,
+        8
+      ],
+      [
+        10,
+        5
+      ]
+    ]
+  },
+  "segments": {
+    "VisitorType": {
+      "New_Visitor": {
+        "rows": 19,
+        "positive_rate": 0.10526315789473684,
+        "selected_rate": 0.05263157894736842,
+        "mean_score": 0.15305534205416585,
+        "false_negative_rate": 0.05263157894736842
+      },
+      "Returning_Visitor": {
+        "rows": 45,
+        "positive_rate": 0.28888888888888886,
+        "selected_rate": 0.26666666666666666,
+        "mean_score": 0.4956301150134853,
+        "false_negative_rate": 0.2
+      }
+    },
+    "Month": {
+      "Aug": {
+        "rows": 8,
+        "positive_rate": 0.0,
+        "selected_rate": 0.125,
+        "mean_score": 0.38522556525681917,
+        "false_negative_rate": 0.0
+      },
+      "Dec": {
+        "rows": 8,
+        "positive_rate": 0.375,
+        "selected_rate": 0.25,
+        "mean_score": 0.4247477634356142,
+        "false_negative_rate": 0.25
+      },
+      "Feb": {
+        "rows": 7,
+        "positive_rate": 0.14285714285714285,
+        "selected_rate": 0.14285714285714285,
+        "mean_score": 0.3036227535016371,
+        "false_negative_rate": 0.14285714285714285
+      },
+      "Jul": {
+        "rows": 6,
+        "positive_rate": 0.16666666666666666,
+        "selected_rate": 0.0,
+        "mean_score": 0.33393093455235195,
+        "false_negative_rate": 0.16666666666666666
+      },
+      "June": {
+        "rows": 8,
+        "positive_rate": 0.25,
+        "selected_rate": 0.0,
+        "mean_score": 0.2106193643965893,
+        "false_negative_rate": 0.25
+      },
+      "Mar": {
+        "rows": 10,
+        "positive_rate": 0.5,
+        "selected_rate": 0.6,
+        "mean_score": 0.614519912127169,
+        "false_negative_rate": 0.1
+      },
+      "May": {
+        "rows": 6,
+        "positive_rate": 0.16666666666666666,
+        "selected_rate": 0.16666666666666666,
+        "mean_score": 0.3930345395191734,
+        "false_negative_rate": 0.16666666666666666
+      },
+      "Nov": {
+        "rows": 11,
+        "positive_rate": 0.18181818181818182,
+        "selected_rate": 0.18181818181818182,
+        "mean_score": 0.4013012627010468,
+        "false_negative_rate": 0.18181818181818182
+      }
+    }
+  },
+  "comparison": {
+    "baseline_model": "gradient_boosting",
+    "model_changed": true,
+    "test_delta": {
+      "pr_auc": 0.07551629766763496,
+      "roc_auc": 0.12653061224489792,
+      "precision": 0.07692307692307693,
+      "recall": 0.06666666666666665,
+      "f1": 0.07142857142857145
+    }
+  }
+}
