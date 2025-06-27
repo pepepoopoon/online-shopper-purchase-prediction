@@ -42,6 +42,8 @@ class ShopperWorkflowTest(unittest.TestCase):
         self.assertEqual(result["test"]["selected_fraction"], 1 / 6)
         self.assertGreater(result["dataset"]["missing_feature_values"], 0)
         self.assertGreater(result["dataset"]["unseen_category_values"], 0)
+        self.assertEqual(set(result["segments"]), {"VisitorType", "Month"})
+        self.assertTrue(result["segments"]["VisitorType"])
         self.assertEqual(
             set(result["comparison"]["test_delta"]),
             {"pr_auc", "roc_auc", "precision", "recall", "f1"},

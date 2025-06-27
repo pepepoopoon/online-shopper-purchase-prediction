@@ -17,7 +17,7 @@ from .data import (
     validate_frame,
 )
 from .generate_smoke_data import generate_smoke_frame
-from .modeling import candidate_models, classification_metrics
+from .modeling import candidate_models, classification_metrics, select_for_budget
 
 
 def inject_missing_values(frame, *, rate: float, seed: int):
@@ -44,6 +44,29 @@ def inject_unseen_categories(frame, *, rate: float, seed: int):
     for column in CATEGORICAL_FEATURES:
         mask = rng.random(len(result)) < rate
         result.loc[mask, column] = f"__UNSEEN_{column}__"
+    return result
+
+
+def segment_diagnostics(frame, scores, *, budget_fraction: float) -> dict[str, object]:
+    """Summarize ranking behavior across operationally relevant test segments."""
+    selected = select_for_budget(scores, budget_fraction)
+    diagnostic_frame = frame[[TARGET, "VisitorType", "Month"]].copy()
+    diagnostic_frame["score"] = scores
+    diagnostic_frame["selected"] = selected
+    result: dict[str, object] = {}
+    for column in ("VisitorType", "Month"):
+        rows = {}
+        for value, group in diagnostic_frame.groupby(column, dropna=False, sort=True):
+            positives = group[TARGET].astype(bool)
+            chosen = group["selected"].astype(bool)
+            rows[str(value)] = {
+                "rows": len(group),
+                "positive_rate": float(positives.mean()),
+                "selected_rate": float(chosen.mean()),
+                "mean_score": float(group["score"].mean()),
+                "false_negative_rate": float((positives & ~chosen).mean()),
+            }
+        result[column] = rows
     return result
 
 
@@ -133,6 +156,7 @@ def run_experiment(
         },
         "validation": {"models": validation_metrics},
         "test": test_metrics,
+        "segments": segment_diagnostics(test, test_scores, budget_fraction=budget_fraction),
     }
     if baseline is not None:
         baseline_test = baseline.get("test")
